@@ -56,7 +56,8 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [tailwindcss()],
+    // as any: 绕过 Astro 内置 vite 与 @tailwindcss/vite 的 vite 类型版本不一致导致的误报
+    plugins: [tailwindcss() as any],
   },
   fonts: [
     {
