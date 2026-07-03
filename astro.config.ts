@@ -4,7 +4,6 @@ import {
   fontProviders,
   svgoOptimizer,
 } from "astro/config";
-import tailwindcss from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { unified } from "@astrojs/markdown-remark";
@@ -56,8 +55,8 @@ export default defineConfig({
     },
   },
   vite: {
-    // as any: 绕过 Astro 内置 vite 与 @tailwindcss/vite 的 vite 类型版本不一致导致的误报
-    plugins: [tailwindcss() as any],
+    // Tailwind 改用 PostCSS 方式（postcss.config.mjs），不再走 vite 插件
+    // 原因：Astro 6 的 rolldown-vite 与 @tailwindcss/vite 存在已知不兼容 (withastro/astro#16542)
   },
   fonts: [
     {
